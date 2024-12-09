@@ -14,6 +14,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
     get new_product_url
     assert_response :success
+    assert_select 'h1', 'New product'
   end
 
   test "should create product" do
