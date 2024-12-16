@@ -9,9 +9,9 @@
 
   # GET /carts/1 or /carts/1.json
   def show
-    if session[:cart_id].to_s != params[:id]
-      invalid_cart
-    end
+    # if session[:cart_id].to_s != params[:id]
+    #   invalid_cart
+    # end
   end
 
   # GET /carts/new
