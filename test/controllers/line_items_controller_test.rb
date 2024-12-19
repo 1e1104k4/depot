@@ -60,5 +60,13 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     assert_match /<tr class="line-item-green-highlight">/, @response.body
   end
 
+  test "should decrement line item quantity until 0" do
+    assert_equal 1, @line_item.quantity
+    patch line_item_url(@line_item),
+          params: { line_item: { quantity: @line_item.quantity - 1 } }
+    assert_redirected_to line_items_path
+    deleted_line_item = LineItem.where(id: @line_item.id)
+    assert_equal 0, deleted_line_item.count
+  end
 
 end

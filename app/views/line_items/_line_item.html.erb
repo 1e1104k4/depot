@@ -9,6 +9,11 @@
       <%= line_item.product.title %>
     </td>
     <td>
+      <%= button_to '-', line_item,
+                    params: { line_item: { quantity: line_item.quantity - 1 } },
+                    method: :patch %>
+    </td>
+    <td>
       <%= button_to 'Delete', line_item, method: :delete %>
     </td>
     <td class="text-right font-bold">
