@@ -51,6 +51,19 @@ class CartsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to store_index_url
   end
 
+  test "should destroy cart via hotwire turbo-stream" do
+    post line_items_url, params: { product_id: products(:ruby).id }
+    @cart = Cart.find(session[:cart_id])
+
+    assert_difference("Cart.count", -1) do
+      delete cart_url(@cart),
+             as: :turbo_stream
+    end
+
+    assert_response :success
+    assert_includes @response.body, '<div id="cart"></div>'
+  end
+
   # test "should redirect when cart_id does not match session" do
   #   post line_items_url, params: { product_id: products(:ruby).id }
   #   # puts 'session', session[:cart_id]
