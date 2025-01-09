@@ -56,9 +56,14 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_path, status: :see_other, notice: "User was successfully destroyed." }
+      format.html { redirect_to users_url,
+                                notice: "User #{@user.name} deleted" }
       format.json { head :no_content }
     end
+  end
+
+  rescue_from 'User::Error' do |exception|
+    redirected_to users_url, notice: exception.message
   end
 
   private
