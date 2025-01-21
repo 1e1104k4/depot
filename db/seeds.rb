@@ -14,6 +14,10 @@
 # Visit https://pragprog.com/titles/rails7 for more book information.
 #---
 # encoding: utf-8
+
+User.create! name: 'dave',
+             password: Rails.application.credentials.dave_password
+
 Product.delete_all
 Product.create!(title: 'Docker for Rails Developers',
                 description:
