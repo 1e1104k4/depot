@@ -10,10 +10,10 @@ services:
   web:
     build: .
     volumes:
-      - ./log:/home/code/depot/log
+      - ./log:/./log
     secrets:
       - source: master_key
-        target: /home/code/depot/config/master.key
+        target: /home/app/depot/config/master.key
     ports:
       - "8001:80"
     depends_on:
